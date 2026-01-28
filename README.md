@@ -47,4 +47,5 @@ USE_REAL_TWITTER=true
 * Set `USE_REAL_TWITTER=false` to force mock data
 * If `TWITTER_BEARER_TOKEN` is missing or API fails, the system auto-falls back to mock tweets
 * Mock data ensures consistent testing
+* Change the development's password in the backend config file
 
