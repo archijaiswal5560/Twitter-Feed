@@ -1,37 +1,13 @@
-const db = require("../../models");
-const { TwitterHandle } = db;
-
-const {
-  generateMockTweets,
-  isTweetDisplayed,
-  saveDisplayedTweet
-} = require("../services/tweetService");
+const { fetchAndStoreTweets } = require("../services/tweetFetcherService");
 
 exports.fetchTweets = async (req, res) => {
   try {
-    const handles = await TwitterHandle.findAll({
-      where: { is_active: true }
-    });
-
-    let newTweets = [];
-
-    for (const handleObj of handles) {
-      const tweets = generateMockTweets(handleObj.handle);
-
-      for (const tweet of tweets) {
-        const alreadyDisplayed = await isTweetDisplayed(tweet.tweet_id);
-
-        if (!alreadyDisplayed) {
-          await saveDisplayedTweet(tweet); // ✅ NOW SAVES
-          newTweets.push(tweet);
-        }
-      }
-    }
+    const tweets = await fetchAndStoreTweets();
 
     res.status(200).json({
       message: "Tweets fetched successfully",
-      count: newTweets.length,
-      data: newTweets
+      count: tweets.length,
+      data: tweets
     });
   } catch (error) {
     console.error(error);

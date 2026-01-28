@@ -11,6 +11,9 @@ db.sequelize.authenticate()
   const twitterHandleRoutes = require("./routes/twitterHandleRoute");
   const tweetRoutes = require("./routes/tweetRoute");
 
+  const startTweetScheduler = require("./jobs/tweetScheduler");
+startTweetScheduler();
+
 const app = express();
 
 app.use(cors());
