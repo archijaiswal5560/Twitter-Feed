@@ -4,8 +4,8 @@ require("dotenv").config();
 const db = require("../models");
 
 db.sequelize.authenticate()
-  .then(() => console.log("✅ Sequelize connected to MySQL"))
-  .catch(err => console.error("❌ DB connection failed:", err));
+  .then(() => console.log("Sequelize connected to MySQL"))
+  .catch(err => console.error(" DB connection failed:", err));
 
 
   const twitterHandleRoutes = require("./routes/twitterHandleRoute");

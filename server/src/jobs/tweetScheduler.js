@@ -5,13 +5,13 @@ const axios = require("axios");
 const startTweetScheduler = () => {
   cron.schedule("0 * * * *", async () => {
     try {
-      console.log("⏰ Running hourly tweet fetch job...");
+      console.log("Running hourly tweet fetch job...");
 
       await axios.get("http://localhost:5000/api/fetchTweets");
 
-      console.log("✅ Hourly tweet fetch completed");
+      console.log("Hourly tweet fetch completed");
     } catch (error) {
-      console.error("❌ Scheduler error:", error.message);
+      console.error("Scheduler error:", error.message);
     }
   });
 };

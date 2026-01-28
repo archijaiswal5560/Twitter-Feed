@@ -1,7 +1,7 @@
 const db = require("../../models");
 const { DisplayedTweet } = db;
 
-// Generate STABLE mock tweets (IMPORTANT FIX)
+// mock tweets 
 const generateMockTweets = (handle) => {
   return [
     {
@@ -14,7 +14,7 @@ const generateMockTweets = (handle) => {
   ];
 };
 
-// Check if tweet already displayed
+
 const isTweetDisplayed = async (tweetId) => {
   const tweet = await DisplayedTweet.findOne({
     where: { tweet_id: tweetId }
@@ -22,7 +22,7 @@ const isTweetDisplayed = async (tweetId) => {
   return !!tweet;
 };
 
-// Save displayed tweet
+
 const saveDisplayedTweet = async (tweet) => {
   return await DisplayedTweet.create({
     tweet_id: tweet.tweet_id,

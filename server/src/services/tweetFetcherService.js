@@ -23,10 +23,10 @@ const fetchAndStoreTweets = async () => {
 
     if (useRealTwitter && process.env.TWITTER_BEARER_TOKEN) {
       try {
-        console.log("🐦 Fetching real tweets for", handleObj.handle);
+        console.log("Fetching real tweets for", handleObj.handle);
         tweets = await fetchTweetsFromTwitter(handleObj.handle);
       } catch (err) {
-        console.warn("⚠ Twitter API failed, falling back to mock data");
+        console.warn(" Twitter API failed, falling back to mock data");
         tweets = generateMockTweets(handleObj.handle);
       }
     } else {
