@@ -1,11 +1,23 @@
 const express = require("express");
 const cors = require("cors");
 require("dotenv").config();
+const db = require("../models");
+
+db.sequelize.authenticate()
+  .then(() => console.log("✅ Sequelize connected to MySQL"))
+  .catch(err => console.error("❌ DB connection failed:", err));
+
+
+  const twitterHandleRoutes = require("./routes/twitterHandleRoute");
+  const tweetRoutes = require("./routes/tweetRoute");
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
+
+app.use("/api", twitterHandleRoutes);
+app.use("/api", tweetRoutes);
 
 app.get("/", (req, res) => {
   res.send("Twitter Feed Display Backend is running 🚀");
